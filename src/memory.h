@@ -15,4 +15,4 @@
 
 void *reallocate(void *pointer, size_t oldSize, size_t newSize);
 
-#endif // CLOX_MEMORY_H
+#endif
