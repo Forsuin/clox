@@ -8,7 +8,8 @@ static int simpleInstruction(const char *name, const int offset) {
   return offset + 1;
 }
 
-static int constantInstruction(const char *name, const Chunk * chunk, const int offset) {
+static int constantInstruction(const char *name, const Chunk *chunk,
+                               const int offset) {
   uint8_t constant = chunk->code[offset + 1];
   printf("%-16s %4d '", name, constant);
   printValue(chunk->constants.values[constant]);
@@ -29,12 +30,11 @@ int disassembleInstruction(const Chunk *chunk, const int offset) {
 
   if (offset > 0 && chunk->lines[offset] == chunk->lines[offset - 1]) {
     printf("   | ");
-  }
-  else {
+  } else {
     printf("%4d ", chunk->lines[offset]);
   }
 
-  uint8_t instruction = chunk->code[offset];
+  const uint8_t instruction = chunk->code[offset];
 
   switch (instruction) {
   case OP_CONSTANT:
