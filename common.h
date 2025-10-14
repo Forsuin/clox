@@ -3,6 +3,6 @@
 
 #include <stdbool.h>
 #include <stddef.h>
-#include <stdio.h>
+#include <stdint.h>
 
 #endif // CLOX_COMMON_H
