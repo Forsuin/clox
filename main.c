@@ -3,7 +3,8 @@
 #include "value.h"
 #include "vm.h"
 
-int main(int argc, const char *argv[]) {
+int main(int argc, const char* argv[])
+{
   initVM();
 
   Chunk chunk;

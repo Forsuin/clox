@@ -6,7 +6,8 @@
 
 #include <stdint.h>
 
-typedef enum {
+typedef enum
+{
   OP_CONSTANT,
   OP_ADD,
   OP_SUBTRACT,
@@ -16,17 +17,18 @@ typedef enum {
   OP_RETURN,
 } OpCode;
 
-typedef struct {
+typedef struct
+{
   int count;
   int capacity;
-  uint8_t *code;
-  int *lines;
+  uint8_t* code;
+  int* lines;
   ValueArray constants;
 } Chunk;
 
-void initChunk(Chunk *chunk);
-void writeChunk(Chunk *chunk, uint8_t byte, int line);
-int addConstant(Chunk *chunk, Value value);
-void freeChunk(Chunk *chunk);
+void initChunk(Chunk* chunk);
+void writeChunk(Chunk* chunk, uint8_t byte, int line);
+int addConstant(Chunk* chunk, Value value);
+void freeChunk(Chunk* chunk);
 
 #endif // CLOX_CHUNK_H
