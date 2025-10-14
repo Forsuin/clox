@@ -3,6 +3,8 @@
 #include "memory.h"
 #include "value.h"
 
+#include <stdio.h>
+
 void initValueArray(ValueArray *array) {
   array->capacity = 0;
   array->count = 0;
@@ -25,4 +27,4 @@ void freeValueArray(ValueArray *array) {
   FREE_ARRAY(Value, array->values, array->capacity);
   initValueArray(array);
 }
-void printValue(Value value) { printf("%g", value); }
+void printValue(const Value value) { printf("%g", value); }
