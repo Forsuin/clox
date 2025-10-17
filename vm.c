@@ -7,6 +7,8 @@
 #include "common.h"
 #include "compiler.h"
 #include "debug.h"
+#include "memory.h"
+#include "object.h"
 
 VM vm;
 
@@ -26,10 +28,15 @@ static void runtimeError(const char* format, ...)
   resetStack();
 }
 
-void initVM() { resetStack(); }
+void initVM()
+{
+  resetStack();
+  vm.objects = NULL;
+}
 
 void freeVM()
 {
+  freeObjects();
 }
 
 void push(const Value value)
