@@ -12,7 +12,7 @@ void initChunk(Chunk* chunk)
   initValueArray(&chunk->constants);
 }
 
-void writeChunk(Chunk* chunk, const uint8_t byte, int line)
+void writeChunk(Chunk* chunk, const uint8_t byte, const int line)
 {
   if (chunk->capacity < chunk->count + 1)
   {
