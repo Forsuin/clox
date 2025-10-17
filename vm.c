@@ -20,6 +20,8 @@ static InterpretResult run()
 {
 #define READ_BYTE() (*vm.ip++)
 #define READ_CONSTANT() (vm.chunk->constants.values[READ_BYTE()])
+
+
 #define BINARY_OP(op)                                                          \
   do {                                                                         \
     double b = pop();                                                          \
@@ -84,8 +86,22 @@ static InterpretResult run()
 
 InterpretResult interpret(const char* source)
 {
-  compile(source);
-  return INTERPRET_OK;
+  Chunk chunk;
+  initChunk(&chunk);
+
+  if (!compile(source, &chunk))
+  {
+    freeChunk(&chunk);
+    return INTERPRET_COMPILE_ERR;
+  }
+
+  vm.chunk = &chunk;
+  vm.ip = vm.chunk->code;
+
+  const InterpretResult result = run();
+
+  freeChunk(&chunk);
+  return result;
 }
 
 void push(Value value)
