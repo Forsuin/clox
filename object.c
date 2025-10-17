@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "memory.h"
-#include "object.h"
 #include "value.h"
 #include "vm.h"
 
@@ -18,12 +17,17 @@ static Obj* allocateObject(const size_t size, const ObjType type)
   return object;
 }
 
-static ObjString* allocateString(char* chars, const int length)
+static ObjString* allocateString(const char* chars, const int length)
 {
   ObjString* string = ALLOCATE_OBJ(ObjString, OBJ_STRING);
   string->length = length;
   string->chars = chars;
   return string;
+}
+
+ObjString* takeString(const char* chars, const int length)
+{
+  return allocateString(chars, length);
 }
 
 ObjString* copyString(const char* chars, const int length)
